@@ -1,0 +1,17 @@
+[user]
+	email = johnswanson3.9@gmail.com
+	name = Bruce Johnson
+[alias]
+	st = status
+	a = add
+	c = commit
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	recent =  !git reflog | egrep -io 'moving from ([^[:space:]]+)' | awk '{ print $3 }' | awk ' !x[$0]++' | egrep -v '^[a-f0-9]{40}$' | head -n5
+	current = !git branch | grep '*' | cut -d ' ' -f2
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	ignorecase = true
